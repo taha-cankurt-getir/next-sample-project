@@ -3,16 +3,13 @@ import Link from "next/link";
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 async function getData() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/article`);
-    if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data');
-    }
-    return res.json();
+    let resData = await fetch("https://jsonplaceholder.typicode.com/posts");
+    resData = await resData.text();
+    return JSON.parse(resData);
 }
 
 const Index = async () => {
-    const {data} = await getData();
+    const data = await getData() ?? [];
     return (
         <div className={'container mx-auto'}>
             <div className={'relative grid grid-cols-4 gap-4 '}>
