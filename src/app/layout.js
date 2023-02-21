@@ -1,4 +1,5 @@
 import './globals.css'
+import Header from './components/header'
 
 export default function RootLayout({ children }) {
   return (
@@ -8,7 +9,13 @@ export default function RootLayout({ children }) {
         head.js. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <div className={'py-5 bg-blue-300 text-center'}>
+            <h1>Footer</h1>
+        </div>
+      </body>
     </html>
   )
 }
